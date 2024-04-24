@@ -25,6 +25,7 @@ export abstract class Layer {
   public timeStretch = 1;
   public matteMode?: MatteMode;
   public matteTarget?: number;
+  public matteInUse?: number;
   public isHidden?: boolean;
   public matchName?: string;
   public masks: Mask[] = [];
@@ -115,6 +116,10 @@ export abstract class Layer {
       this.matteMode = json.tt;
     }
 
+    if ('tp' in json) {
+      this.matteInUse = json.tp;
+    }
+
     if ('td' in json) {
       this.matteTarget = json.td;
     }
@@ -155,6 +160,7 @@ export abstract class Layer {
       nm: this.name,
       mn: this.matchName,
       tt: this.matteMode,
+      tp: this.matteInUse,
       td: this.matteTarget,
       cl: this.classNames.length ? this.classNames.join(' ') : undefined,
       ln: this.id,

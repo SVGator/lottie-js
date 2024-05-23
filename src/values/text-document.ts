@@ -15,6 +15,7 @@ export class TextDocument implements Value {
   public textTracking?: number;
   public strokeColor?: Color;
   public strokeWidth?: number;
+  public baselineShift?: number;
 
   /**
    * Convert the Lottie JSON object to class instance.
@@ -35,6 +36,7 @@ export class TextDocument implements Value {
     document.textCaps = json.ca;
     document.textTracking = json.tr;
     document.strokeWidth = json.sw;
+    document.baselineShift = json.ls;
 
     if ('sc' in json) {
       document.strokeColor = Color.fromJSON(json.sc);
@@ -56,6 +58,7 @@ export class TextDocument implements Value {
       tr: this.textTracking,
       sc: this.strokeColor,
       sw: this.strokeWidth,
+      ls: this.baselineShift,
     };
   }
 }
